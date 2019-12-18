@@ -8,6 +8,16 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #'instance creation' }
+EgContact class >> name: aNameString phone: aPhoneString [
+	^ self new name: aNameString; phone: aPhoneString; yourself 
+]
+
+{ #category : #testing }
+EgContact >> hasMatchingText: aString [
+	^ name includesSubstring: aString caseSensitive: false
+]
+
 { #category : #accessing }
 EgContact >> name [
 	^ name
