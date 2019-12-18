@@ -1,3 +1,15 @@
+"
+ContactBook Entity Model
+
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	name:		<String>
+	phone:		<String>
+
+
+    Implementation Points
+"
 Class {
 	#name : #EgContact,
 	#superclass : #Object,
