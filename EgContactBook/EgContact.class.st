@@ -8,6 +8,26 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #accessing }
+EgContact >> name [
+	^ name
+]
+
+{ #category : #accessing }
+EgContact >> name: anObject [
+	name := anObject
+]
+
+{ #category : #accessing }
+EgContact >> phone [
+	^ phone
+]
+
+{ #category : #accessing }
+EgContact >> phone: anObject [
+	phone := anObject
+]
+
 { #category : #printing }
 EgContact >> printOn: aStream [
 	super printOn: aStream.
