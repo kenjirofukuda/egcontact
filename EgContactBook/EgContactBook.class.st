@@ -12,8 +12,41 @@ Class {
 	#instVars : [
 		'contacts'
 	],
+	#classInstVars : [
+		'family',
+		'coworkers'
+	],
 	#category : #EgContactBook
 }
+
+{ #category : #filling }
+EgContactBook class >> coworkers [
+	^ coworkers
+		ifNil: [ 
+			coworkers := self new
+				add: 'Stef' phone: '112 378';
+				add: 'Pavel' phone: '898 678';
+				add: 'Marcus' phone: '444 888';
+				yourself ]
+]
+
+{ #category : #filling }
+EgContactBook class >> family [
+	^ family
+		ifNil: [ 
+			family := self new 
+				add: 'John' phone: '342 345';
+				add: 'Bill' phone: '123 678';
+				add: 'Marry' phone: '789 567';
+				yourself ]
+]
+
+{ #category : #initialization }
+EgContactBook class >> reset [ 
+	<script>
+	family := nil.
+	coworkers := nil.
+]
 
 { #category : #adding }
 EgContactBook >> add: aContactName phone: phone [
