@@ -41,6 +41,34 @@ EgContactBookPresenter >> initializePresenters [
 	table items: contactBook contacts
 ]
 
+{ #category : #testing }
+EgContactBookPresenter >> isContactSelected [
+	^ table selectedItems isNotEmpty
+]
+
+{ #category : #action }
+EgContactBookPresenter >> newContact [
+	| rawData splitted |
+	rawData := self
+		request: 'Enter new contact name add phone (split by comma)'
+		initialAnswer: ''
+		title: 'Create new Contact'.
+	splitted := rawData splitOn: $,.
+	(splitted size = 2 and: [ splitted allSatisfy: #isNotEmpty ])
+		ifFalse: [ 
+			SpInvalidUserInput
+				signal: 'Please enter new contact name add phone (split by comma)' ].
+	^ EgContact new
+		name: splitted first;
+		phone: splitted second;
+		yourself 
+]
+
+{ #category : #testing }
+EgContactBookPresenter >> selectedContact [
+	^ table selection selectedItem
+]
+
 { #category : #'accessing model' }
 EgContactBookPresenter >> setModelBeforeInitialization: aContactBook [
 	super setModelBeforeInitialization: aContactBook.
