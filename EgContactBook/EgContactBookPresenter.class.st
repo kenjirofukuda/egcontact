@@ -1,3 +1,15 @@
+"
+It hholds a reference to a con-tact book and it is structured around a table.
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	contactBook:		<EgContactBook>
+	table:		<SpTablePresenter>
+
+
+    Implementation Points
+"
 Class {
 	#name : #EgContactBookPresenter,
 	#superclass : #SpPresenter,
