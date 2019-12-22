@@ -20,6 +20,13 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #specs }
+EgContactBookPresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
+	aCmCommandsGroup 
+		register: (EgAddContactCommand forSpec context: presenter);
+		register: (EgRemoveContactCommand forSpec context: presenter)
+]
+
 { #category : #examples }
 EgContactBookPresenter class >> cowokersExample [
 	<example>
@@ -50,7 +57,8 @@ EgContactBookPresenter >> initializePresenters [
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name).
 	table
 		addColumn: (SpStringTableColumn title: 'Phone' evaluated: #phone).
-	table items: contactBook contacts
+	table contextMenu: [self rootCommandsGroup beRoot asMenuPresenter].
+	table items: contactBook contacts.
 ]
 
 { #category : #testing }
