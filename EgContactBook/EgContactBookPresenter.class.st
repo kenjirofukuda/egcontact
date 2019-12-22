@@ -20,11 +20,36 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #commands }
+EgContactBookPresenter class >> buildAddingGroupWith: presenter [ 
+	^ (CmCommandGroup named: 'Adding') asSpecGroup 
+		description: 'Commands related to contact addtion.';
+		register: (EgAddContactCommand forSpec context: presenter);
+		beDisplayedAsGroup;
+		yourself 
+]
+
 { #category : #specs }
 EgContactBookPresenter class >> buildCommandsGroupWith: presenter forRoot: aCmCommandsGroup [
 	aCmCommandsGroup 
-		register: (EgAddContactCommand forSpec context: presenter);
-		register: (EgRemoveContactCommand forSpec context: presenter)
+		register: (self buildContextualMenuGroupWith: presenter)
+]
+
+{ #category : #api }
+EgContactBookPresenter class >> buildContextualMenuGroupWith: presenter [
+	^ (CmCommandGroup named: 'Context Menu') asSpecGroup 
+		register: (self buildAddingGroupWith: presenter);
+		register: (self buildRemovingGroupWith: presenter);
+		yourself
+]
+
+{ #category : #commands }
+EgContactBookPresenter class >> buildRemovingGroupWith: presenter [ 
+	^ (CmCommandGroup named: 'Removing') asSpecGroup 
+		description: 'Commands related to contact removal.';
+		register: (EgRemoveContactCommand forSpec context: presenter);
+		beDisplayedAsGroup;
+		yourself 
 ]
 
 { #category : #examples }
@@ -57,7 +82,7 @@ EgContactBookPresenter >> initializePresenters [
 		addColumn: (SpStringTableColumn title: 'Name' evaluated: #name).
 	table
 		addColumn: (SpStringTableColumn title: 'Phone' evaluated: #phone).
-	table contextMenu: [self rootCommandsGroup beRoot asMenuPresenter].
+	table contextMenu: [(self rootCommandsGroup / 'Context Menu') beRoot asMenuPresenter].
 	table items: contactBook contacts.
 ]
 
