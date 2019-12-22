@@ -96,3 +96,8 @@ EgContactBookPresenter >> table [
 EgContactBookPresenter >> table: anObject [
 	table := anObject
 ]
+
+{ #category : #userinterface }
+EgContactBookPresenter >> updateView [ 
+	table items: contactBook contacts
+]
