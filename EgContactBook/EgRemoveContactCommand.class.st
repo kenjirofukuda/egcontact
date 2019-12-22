@@ -7,6 +7,14 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #converting }
+EgRemoveContactCommand >> asSpecCommand [
+	^ super asSpecCommand
+		iconName: #removeIcon;
+		shortcutKey: $x meta;
+		yourself 
+]
+
 { #category : #testing }
 EgRemoveContactCommand >> canBeExecuted [ 
 	^ self contactBookPresenter isContactSelected

@@ -7,6 +7,14 @@ Class {
 	#category : #EgContactBook
 }
 
+{ #category : #converting }
+EgAddContactCommand >> asSpecCommand [
+	^ super asSpecCommand
+		iconName: #changeAdd;
+		shortcutKey: $n meta;
+		yourself 
+]
+
 { #category : #executing }
 EgAddContactCommand >> execute [
 	| contact |
