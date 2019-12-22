@@ -9,7 +9,7 @@ Class {
 
 { #category : #testing }
 EgRemoveContactCommand >> canBeExecuted [ 
-	self contactBookPresenter isContactSelected
+	^ self contactBookPresenter isContactSelected
 ]
 
 { #category : #executing }
