@@ -86,6 +86,12 @@ EgContactBookPresenter >> initializePresenters [
 	table items: contactBook contacts.
 ]
 
+{ #category : #initialization }
+EgContactBookPresenter >> initializeWindow: aWindowPresenter [
+	super initializeWindow: aWindowPresenter.
+	self rootCommandsGroup installShortcutsIn: aWindowPresenter.
+]
+
 { #category : #testing }
 EgContactBookPresenter >> isContactSelected [
 	^ table selectedItems isNotEmpty
